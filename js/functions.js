@@ -20,17 +20,4 @@ function checkCoins() {
   }
 }
 
-function getPrice(coin) {
-  fetch(coin.api)
-    .then((response) => response.json())
-    .then((data) => {
-      return data[coin.path];
-    });
-}
-
-async function printPrice(token) {
-  const a = await token;
-  console.log('el precio es ' + a);
-};
-
-export { checkCoins, coins, getCoins, pushCoins, getPrice, printPrice };
+export { checkCoins, coins, getCoins, pushCoins };

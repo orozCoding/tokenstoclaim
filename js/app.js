@@ -17,8 +17,6 @@ checkerBoxes.forEach((box) => {
       console.log(`checking ${coins[i].name}`);
       coins[i].act = true;
       pushCoins(coins);
-      let price = getPrice(coins[i]);
-      printPrice(price);
     } else {
       console.log(`unchecking ${coins[i].name}`);
       coins[i].act = false;
