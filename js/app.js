@@ -1,10 +1,9 @@
-import { checkCoins, coins, getCoins, pushCoins, getPrice, printPrice } from './functions.js';
+import { checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice, displayToken, removeToken, updatePrices } from './functions.js';
 import { checkerBoxes } from './containers.js';
 import { tokens } from './coins.js';
 
 window.addEventListener('load', () => {
   checkCoins();
-  console.log('checked the coins');
 })
 
 checkerBoxes.forEach((box) => {
@@ -12,17 +11,17 @@ checkerBoxes.forEach((box) => {
     let arr = Array.from(checkerBoxes)
     let coins = getCoins();
     let i = arr.indexOf(box);
-    console.log(i);
+    let token = coins[i];
     if(box.checked){
-      console.log(`checking ${coins[i].name}`);
-      coins[i].act = true;
-      pushCoins(coins);
-      let price = getPrice(coins[i]);
-      printPrice(price);
+      token.act = true;
+      setTimeout(pushCoins(coins), 2000) ;
+      displayToken(token);
+      updatePrices(coins);
     } else {
-      console.log(`unchecking ${coins[i].name}`);
       coins[i].act = false;
       pushCoins(coins);
+      removeToken(token);
     }
   })
 })
+
