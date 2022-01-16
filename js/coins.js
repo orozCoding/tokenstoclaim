@@ -1,6 +1,16 @@
 export let tokens = [
   {
     index: 0,
+    name: 'axs',
+    api: 'https://api.coingecko.com/api/v3/simple/price?ids=axie-infinity&vs_currencies=usd',
+    path: 'axie-infinity',
+    act: false,
+    price: 0,
+    input: null,
+    balance: 'Enter your tokens',
+  },
+  {
+    index: 1,
     name: 'slp',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=smooth-love-potion&vs_currencies=usd',
     path: 'smooth-love-potion',
@@ -10,7 +20,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 1,
+    index: 2,
     name: 'bcoin',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=bomber-coin&vs_currencies=usd',
     path: 'bomber-coin',
@@ -20,7 +30,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 2,
+    index: 3,
     name: 'atlas',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=star-atlas&vs_currencies=usd',
     path: 'star-atlas',
@@ -30,7 +40,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 3,
+    index: 4,
     name: 'thg',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=thetan-arena&vs_currencies=usd',
     path: 'thetan-arena',
@@ -40,8 +50,8 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 4,
-    name: 'thg',
+    index: 5,
+    name: 'thc',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=thetan-coin&vs_currencies=usd',
     path: 'thetan-coin',
     act: false,
@@ -50,7 +60,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 5,
+    index: 6,
     name: 'ccar',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=cryptocars&vs_currencies=usd',
     path: 'cryptocars',
@@ -60,7 +70,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 6,
+    index: 7,
     name: 'cpan',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=cryptoplanes&vs_currencies=usd',
     path: 'cryptoplanes',
@@ -70,7 +80,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 7,
+    index: 8,
     name: 'cgar',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=cryptoguards&vs_currencies=usd',
     path: 'cryptoguards',
@@ -80,7 +90,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 8,
+    index: 9,
     name: 'orkl',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=orakler&vs_currencies=usd',
     path: 'orakler',
@@ -90,7 +100,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 9,
+    index: 10,
     name: 'cwolf',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=cryptowolf&vs_currencies=usd',
     path: 'cryptowolf',
@@ -100,7 +110,7 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 10,
+    index: 11,
     name: 'fvp',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=fishervspirate&vs_currencies=usd',
     path: 'fishervspirate',
@@ -110,10 +120,20 @@ export let tokens = [
     balance: 'Enter your tokens',
   },
   {
-    index: 11,
+    index: 12,
     name: 'gem',
     api: 'https://api.coingecko.com/api/v3/simple/price?ids=age-of-knights&vs_currencies=usd',
     path: 'age-of-knights',
+    act: false,
+    price: 0,
+    input: null,
+    balance: 'Enter your tokens',
+  },
+  {
+    index: 13,
+    name: 'rps',
+    api: 'https://api.coingecko.com/api/v3/simple/price?ids=rps-league&vs_currencies=usd',
+    path: 'rps-league',
     act: false,
     price: 0,
     input: null,
