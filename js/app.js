@@ -1,10 +1,10 @@
 import { checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice, displayToken, 
   removeToken, updatePrices, renderUser, checkBox, checkSession, appendButtons,
-  oldUser, updateTotal } from './functions.js';
+  oldUser, updateTotal, checkVersion } from './functions.js';
 import { checkerBoxes } from './containers.js';
-import { tokens } from './coins.js';
 
 window.addEventListener('load', () => {
+  checkVersion();
   if(getCoins()){
     renderUser();
   }

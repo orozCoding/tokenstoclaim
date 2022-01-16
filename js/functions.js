@@ -4,6 +4,19 @@ import { welcome, balanceButtons } from './sections.js';
 let coinsContainer = document.getElementById('coins-container');
 let coins = [];
 
+let ver = '0.0.4';
+
+function checkVersion() {
+  if (!localStorage.getItem('version')){
+    localStorage.setItem('version', ver)
+  } else {
+    if (localStorage.getItem('version') !== ver) {
+      localStorage.clear();
+      location.reload();
+    }
+  }
+}
+
 function getCoins() {
   return JSON.parse(localStorage.getItem('coins'));
 }
@@ -197,5 +210,5 @@ function oldUser() {
 export {
   checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice,
   displayToken, removeToken, updatePrices, renderUser, checkBox, checkSession,
-  oldUser, appendButtons, updateTotal
+  oldUser, appendButtons, updateTotal, checkVersion
 };
