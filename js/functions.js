@@ -4,10 +4,11 @@ import { welcome, balanceButtons } from './sections.js';
 let coinsContainer = document.getElementById('coins-container');
 let coins = [];
 
-let ver = '0.0.4';
+let ver = '0.0.5';
 
 function checkVersion() {
   if (!localStorage.getItem('version')){
+    localStorage.clear();
     localStorage.setItem('version', ver)
   } else {
     if (localStorage.getItem('version') !== ver) {
