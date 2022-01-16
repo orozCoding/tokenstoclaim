@@ -140,6 +140,10 @@ input {
   flex-wrap: wrap;
 }
 
+.checker-title {
+  text-decoration: underline;
+}
+
 .coin-checker {
   min-width: 60px;
 }
