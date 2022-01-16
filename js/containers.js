@@ -1,1 +1,0 @@
-export const checkerBoxes = document.querySelectorAll('.checker-box');
