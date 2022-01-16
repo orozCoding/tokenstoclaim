@@ -24,3 +24,4 @@ balanceButtons.innerHTML = `<div id="suma-container">
 <button id="btn-reset" type="button">reset</button>
 <button id="btn-refresh" type="button">refresh</button>
 </div>`;
+

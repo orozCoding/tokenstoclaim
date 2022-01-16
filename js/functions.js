@@ -1,4 +1,4 @@
-import { tokens, changeCoins } from './coins.js';
+import { tokens } from './coins.js';
 import { welcome, balanceButtons } from './sections.js';
 
 let coinsContainer = document.getElementById('coins-container');
@@ -23,15 +23,6 @@ function getCoins() {
 
 function pushCoins(tokens) {
   localStorage.setItem('coins', JSON.stringify(tokens));
-}
-
-function checkCoins() {
-  if (getCoins()) {
-    coins = getCoins();
-  }
-  else {
-    pushCoins(tokens);
-  }
 }
 
 function fetchPrice(token) {
@@ -167,7 +158,7 @@ function appendButtons() {
   })
 }
 
-function checkSession() {
+function checkUser() {
   let coins = getCoins();
   let user;
   for (let i = 0; i < coins.length; i++) {
@@ -205,10 +196,59 @@ function oldUser() {
   }
 }
 
+function displayBoxes() {
+  let container = document.getElementById('checkers-container');
+  let tokens = getCoins();
+  tokens.forEach((token) => {
+    let box = document.createElement('div');
+    box.id = `${token.name}-checker`
+    box.className = 'coin-checker'
+    box.innerHTML = `<div class="checker-title">${token.name.toUpperCase()}</div>
+    <div><input class="checker-box" type="checkbox" name="${token.name}" id="cb-${token.index}"></div>`
+    container.appendChild(box);
+  })
 
+  const checkerBoxes = document.querySelectorAll('.checker-box');
+
+  checkerBoxes.forEach((box) => {
+    box.addEventListener('click', () => {
+      let arr = Array.from(checkerBoxes)
+      let coins = getCoins();
+      let i = arr.indexOf(box);
+      let token = coins[i];
+      if(box.checked){
+        token.act = true;
+        pushCoins(coins);
+        displayToken(token);
+        updatePrices(coins);
+        checkUser();
+        updateTotal();
+      } else {
+        token.act = false;
+        pushCoins(coins);
+        removeToken(token);
+        checkUser();
+        updateTotal();
+      }
+    })
+  })
+
+}
+
+function checkCoins() {
+  if (getCoins()) {
+    coins = getCoins();
+    displayBoxes();
+    renderUser();
+  }
+  else {
+    pushCoins(tokens);
+    displayBoxes();
+  }
+}
 
 export {
   checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice,
-  displayToken, removeToken, updatePrices, renderUser, checkBox, checkSession,
-  oldUser, appendButtons, updateTotal, checkVersion
+  displayToken, removeToken, updatePrices, renderUser, checkBox, checkUser,
+  oldUser, appendButtons, updateTotal, checkVersion, displayBoxes
 };

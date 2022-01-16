@@ -30,6 +30,8 @@ body {
 .d-flex {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .bold {
@@ -67,7 +69,7 @@ input {
 
 /* Coins Cointainer */
 
-#welcome {
+#welcome-msg {
   max-width: 450px;
   gap: 20px;
 }
@@ -79,10 +81,10 @@ input {
 
 #coins-container {
   max-width: 80%;
-  align-items: center;
   text-align: center;
   gap: 20px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .coin-container {
@@ -133,8 +135,9 @@ input {
 }
 
 #checkers-container {
-  flex-direction: row;
-  gap: 30px;
+  gap: 10px;
+  max-width: 50%;
+  flex-wrap: wrap;
 }
 
 .coin-checker {
@@ -160,4 +163,8 @@ footer {
 
 .d-off {
   display: none;
+}
+
+.row {
+  flex-direction: row;
 }

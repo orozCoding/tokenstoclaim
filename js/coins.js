@@ -28,9 +28,55 @@ export let tokens = [
   price: 0,
   input: null,
   balance: 'Enter your tokens',
+},
+  {
+  index: 3,
+  name: 'thg',
+  api: 'https://api.coingecko.com/api/v3/simple/price?ids=thetan-arena&vs_currencies=usd',
+  path: 'thetan-arena',
+  act: false,
+  price: 0,
+  input: null,
+  balance: 'Enter your tokens',
+},
+  {
+  index: 4,
+  name: 'thg',
+  api: 'https://api.coingecko.com/api/v3/simple/price?ids=thetan-coin&vs_currencies=usd',
+  path: 'thetan-coin',
+  act: false,
+  price: 0,
+  input: null,
+  balance: 'Enter your tokens',
+},
+  {
+  index: 5,
+  name: 'ccar',
+  api: 'https://api.coingecko.com/api/v3/simple/price?ids=cryptocars&vs_currencies=usd',
+  path: 'cryptocars',
+  act: false,
+  price: 0,
+  input: null,
+  balance: 'Enter your tokens',
+},
+{
+index: 6,
+name: 'cpan',
+api: 'https://api.coingecko.com/api/v3/simple/price?ids=cryptoplanes&vs_currencies=usd',
+path: 'cryptoplanes',
+act: false,
+price: 0,
+input: null,
+balance: 'Enter your tokens',
+},
+{
+index: 7,
+name: 'cgar',
+api: 'https://api.coingecko.com/api/v3/simple/price?ids=cryptoguards&vs_currencies=usd',
+path: 'cryptoguards',
+act: false,
+price: 0,
+input: null,
+balance: 'Enter your tokens',
 }
 ];
-
-export function changeCoins(val) {
-  coins = val;
-}
