@@ -1,5 +1,5 @@
 import { tokens, changeCoins } from './coins.js';
-import { checkerBoxes } from './containers.js';
+import { welcome, balanceButtons } from './sections.js';
 
 let coinsContainer = document.getElementById('coins-container');
 let coins = [];
@@ -40,7 +40,7 @@ function updateBalance(name, balance) {
   let coins = getCoins();
   for (let i = 0; i < coins.length; i++) {
     if (coins[i].name === name) {
-      coins[i].balance = Number(balance);
+      coins[i].balance = balance;
     }
   }
   pushCoins(coins);
@@ -48,7 +48,7 @@ function updateBalance(name, balance) {
 
 async function displayToken(coin) {
   let newToken = document.createElement('div');
-  let { name } = coin;
+  let { name, balance, input } = coin;
   newToken.id = `${coin.name}-container`;
   newToken.classList.add('coin-container', 'd-flex');
 
@@ -56,7 +56,7 @@ async function displayToken(coin) {
   <div id="${name}-section" class="coin-usd">Price in USD:</div>
   <div class="coin-price-container"><div id="${name}-price" class="coin-price">Loading Price...</div></div>
   <input id="${name}-input" class="coin-input" type="number" onwheel="this.blur()">
-  <div id="${name}-balance" class="coin-balance">Enter your tokens</div>`
+  <div id="${name}-balance" class="coin-balance">${balance}</div>`
 
   coinsContainer.appendChild(newToken);
 
@@ -66,14 +66,26 @@ async function displayToken(coin) {
     priceBox.innerHTML = '$' + price.toFixed(4);
   }, 2000)
 
-  let balance = document.getElementById(`${name}-balance`)
+  let inputBox = document.getElementById(`${name}-input`);
+  inputBox.value = input;
+  let balanceBox = document.getElementById(`${name}-balance`);
 
-  let input = document.getElementById(`${name}-input`);
-  input.addEventListener('keyup', () => {
-    let newBalance = Number((input.value * price).toFixed(2));
-    balance.innerHTML = `$${newBalance}`;
+  inputBox.addEventListener('keyup', () => {
+    // when type, update input in coin localStorage
+    let coins = getCoins();
+    for (let i = 0; i < coins.length; i++) {
+      if (coins[i].name === name) {
+        coins[i].input = Number(inputBox.value);
+      }
+    }
+    pushCoins(coins);
+    // now make calcs to display and also save
+    let newBalance = `$${Number((inputBox.value * price).toFixed(2))}`;
+    balanceBox.innerHTML = newBalance;
     updateBalance(name, newBalance);
   })
+
+
 }
 
 function removeToken(coin) {
@@ -91,7 +103,67 @@ async function updatePrices(arr) {
   pushCoins(arr);
 }
 
+function checkBox(coin) {
+  let box = document.getElementById(`cb-${coin.index}`);
+  box.checked = true;
+}
+
+function renderUser() {
+  let coins = getCoins();
+  coins.forEach(coin => {
+    if (coin.act === true) {
+      displayToken(coin);
+      checkBox(coin);
+    }
+  });
+}
+
+function checkSession() {
+  let coins = getCoins();
+  let user;
+  for (let i = 0; i < coins.length; i++) {
+    if (coins[i].act === true){
+      user = 'old';
+      console.log('user is old');
+      if(welcome){
+        welcome.remove();
+        break;
+      }
+      break;
+    } else {
+      user = 'new';
+    }
+  }
+  if (user === 'new') {
+    let coinsContainer = document.getElementById('coins-container');
+    console.log('the user is new');
+    coinsContainer.appendChild(welcome)
+  }
+}
+
+function appendButtons() {
+  coinsContainer.insertAfter(balanceButtons)
+}
+
+
+function oldUser() {
+  console.log('oldUser');
+  if (welcome) {
+    welcome.remove();
+  }
+
+  let buttons = document.getElementById('balance-buttons')
+
+  if (buttons != true) {
+    console.log('append');
+    appendButtons()
+  }
+}
 
 
 
-export { checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice, displayToken, removeToken, updatePrices };
+export {
+  checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice,
+  displayToken, removeToken, updatePrices, renderUser, checkBox, checkSession,
+  oldUser, appendButtons
+};

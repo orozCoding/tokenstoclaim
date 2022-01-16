@@ -1,9 +1,15 @@
-import { checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice, displayToken, removeToken, updatePrices } from './functions.js';
+import { checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice, displayToken, 
+  removeToken, updatePrices, renderUser, checkBox, checkSession, appendButtons,
+  oldUser } from './functions.js';
 import { checkerBoxes } from './containers.js';
 import { tokens } from './coins.js';
 
 window.addEventListener('load', () => {
+  if(getCoins()){
+    renderUser();
+  }
   checkCoins();
+  checkSession();
 })
 
 checkerBoxes.forEach((box) => {
@@ -14,13 +20,14 @@ checkerBoxes.forEach((box) => {
     let token = coins[i];
     if(box.checked){
       token.act = true;
-      setTimeout(pushCoins(coins), 2000) ;
       displayToken(token);
       updatePrices(coins);
+      oldUser();
     } else {
-      coins[i].act = false;
+      token.act = false;
       pushCoins(coins);
       removeToken(token);
+      checkSession();
     }
   })
 })

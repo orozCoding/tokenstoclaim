@@ -6,8 +6,8 @@ export let tokens = [
   path: 'smooth-love-potion',
   act: false,
   price: 0,
-  balance: 0,
-  subTotal: 0,
+  input: null,
+  balance: 'Enter your tokens',
 },
   {
   index: 1,
@@ -16,8 +16,8 @@ export let tokens = [
   path: 'bomber-coin',
   act: false,
   price: 0,
-  balance: 0,
-  subTotal: 0,
+  input: null,
+  balance: 'Enter your tokens',
 },
   {
   index: 2,
@@ -26,8 +26,8 @@ export let tokens = [
   path: 'star-atlas',
   act: false,
   price: 0,
-  balance: 0,
-  subTotal: 0,
+  input: null,
+  balance: 'Enter your tokens',
 }
 ];
 
