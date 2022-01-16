@@ -46,6 +46,25 @@ function updateBalance(name, balance) {
   pushCoins(coins);
 }
 
+function updateTotal() {
+  if (document.getElementById('suma-balance')) {
+    let totalBalance = document.getElementById('suma-balance');
+    let tokens = getCoins();
+    let sum = 0;
+    for (let i = 0; i < tokens.length; i++) {
+      const token = tokens[i];
+      if (token.act === true && token.balance !== 'Enter your tokens') {
+        sum += Number(token.balance.slice(1));
+      }
+    }
+    if (sum === NaN) {
+      totalBalance.innerHTML = `$0`;
+    } else {
+      totalBalance.innerHTML = `$${sum.toFixed(2)}`;
+    }
+  }
+}
+
 async function displayToken(coin) {
   let newToken = document.createElement('div');
   let { name, balance, input } = coin;
@@ -83,6 +102,8 @@ async function displayToken(coin) {
     let newBalance = `$${Number((inputBox.value * price).toFixed(2))}`;
     balanceBox.innerHTML = newBalance;
     updateBalance(name, newBalance);
+    //update total
+    updateTotal();
   })
 
 
@@ -118,17 +139,33 @@ function renderUser() {
   });
 }
 
+function appendButtons() {
+  let body = document.getElementById('body');
+  let checkers = document.getElementById('checkers');
+  body.insertBefore(balanceButtons, checkers)
+  let reset = document.getElementById('btn-reset');
+  reset.addEventListener('click', () => {
+    localStorage.clear()
+    location.reload();
+  })
+  let refresh = document.getElementById('btn-refresh');
+  refresh.addEventListener('click', () => {
+    location.reload();
+  })
+}
+
 function checkSession() {
   let coins = getCoins();
   let user;
   for (let i = 0; i < coins.length; i++) {
-    if (coins[i].act === true){
+    if (coins[i].act === true) {
       user = 'old';
-      console.log('user is old');
-      if(welcome){
+      if (document.getElementById('welcome-msg')) {
         welcome.remove();
+        appendButtons()
         break;
       }
+      appendButtons()
       break;
     } else {
       user = 'new';
@@ -136,26 +173,21 @@ function checkSession() {
   }
   if (user === 'new') {
     let coinsContainer = document.getElementById('coins-container');
-    console.log('the user is new');
     coinsContainer.appendChild(welcome)
+    if (document.getElementById('balance-buttons')) {
+      balanceButtons.remove();
+    }
   }
 }
 
-function appendButtons() {
-  coinsContainer.insertAfter(balanceButtons)
-}
-
-
 function oldUser() {
-  console.log('oldUser');
-  if (welcome) {
+  if (document.getElementById('welcome-msg')) {
     welcome.remove();
   }
 
   let buttons = document.getElementById('balance-buttons')
 
   if (buttons != true) {
-    console.log('append');
     appendButtons()
   }
 }
@@ -165,5 +197,5 @@ function oldUser() {
 export {
   checkCoins, coins, getCoins, pushCoins, fetchPrice, getPrice,
   displayToken, removeToken, updatePrices, renderUser, checkBox, checkSession,
-  oldUser, appendButtons
+  oldUser, appendButtons, updateTotal
 };
