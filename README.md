@@ -21,7 +21,7 @@ On this site you will be able to keep track of the amount of unclaimed tokens yo
 
 👤 **Angel Orozco (orozCoding)**
 
-- GitHub: [@githubhandle](https://github.com/orozCoding)
+- GitHub: [@orozCoding](https://github.com/orozCoding)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/angel-orozco-652230228/)
 
 ## 🤝 Contributing
